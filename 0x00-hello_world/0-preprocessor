@@ -1,0 +1,3 @@
+#!/bin/bash
+OUTPUT_FILE="c"
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 "$CFILE" -o "$OUTPUT_FILE"
