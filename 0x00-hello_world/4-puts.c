@@ -1,6 +1,8 @@
 #include <stdio.h>
 /**
- * Description: puts sprinter
+ * main - prints words
+ * Description: put sprinter
+ * Return: zero
  * */
 
 int main(void) 
