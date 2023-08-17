@@ -2,7 +2,7 @@
 #include <stdio.h>i
 
 /**
-   * main - check the code for Holberton School students.
+   * main - check 
     *
      * Return: Always 0.
       */
