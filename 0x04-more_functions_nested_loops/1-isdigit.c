@@ -15,3 +15,4 @@ for (digit = '0'; digit <= '9'; digit++)
 }
 return (0);
 }
+
