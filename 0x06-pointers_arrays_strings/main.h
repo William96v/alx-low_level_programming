@@ -1,5 +1,3 @@
-main.h
-
 #ifndef INV_HOLBERTON_H
 #define INV_HOLBERTON_H
 
