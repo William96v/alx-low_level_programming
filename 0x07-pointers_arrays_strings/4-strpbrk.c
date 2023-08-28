@@ -2,7 +2,7 @@
 #include <stdio.h>
 /**
  * _strpbrk - prints the consecutive caracters of s1 that are in s2.
- * @s: source string
+ * @str: source string
  * @accept: searching string
  *
  * Return: new string.
