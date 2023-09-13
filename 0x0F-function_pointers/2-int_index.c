@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "main.h"
 
 /**
  * int_index - iterate over an array and executes passed functions on the
