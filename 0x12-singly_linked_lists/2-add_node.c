@@ -14,7 +14,7 @@ list_t *add_node(list_t **head, const char *my_str)
 	list_t *new;
 	unsigned int length = 0;
 
-	while (str[length])
+	while (my_str[length])
 		length++;
 
 	new = malloc(sizeof(list_t));
