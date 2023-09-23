@@ -2,19 +2,19 @@
 #include "lists.h"
 
 /**
- * free_list - frees a linked list
+ * free_list - frees my linked list from bondage
  * @head: list_t list to be freed
  */
 void free_list(list_t *head)
 {
-	list_t *temp;
+	list_t *new_temp;
 
 	while (head)
 	{
-		temp = head->next;
+		new_temp = head->next;
 		free(head->str);
 		free(head);
-		head = temp;
+		head = new_temp;
 	}
 }
 
