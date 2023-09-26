@@ -12,10 +12,10 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 	unsigned int j = 0;
 	listint_t *custom_temp = head;
 
-	while (custom_temp && i < index)
+	while (custom_temp && j < index)
 	{
 		custom_temp = custom_temp->next;
-		i++;
+		j++;
 	}
 
 	return (custom_temp ? custom_temp : NULL);
