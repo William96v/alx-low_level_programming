@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "custom_lists.h"
+#include "lists.h"
 
 /**
  * main - linked list function
