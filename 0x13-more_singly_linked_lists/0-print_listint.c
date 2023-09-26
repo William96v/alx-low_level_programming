@@ -1,4 +1,4 @@
-#include "custom_lists.h"
+#include "lists.h"
 
 /**
  * custom_print_list - prints all the elements of a linked list
