@@ -17,5 +17,5 @@ size_t print_listint(const listint_t *head)
         head = head->next;
     }
 
-    return (custorm_num);
+    return (custom_num);
 }
