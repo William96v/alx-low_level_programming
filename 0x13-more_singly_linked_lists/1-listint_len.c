@@ -6,7 +6,7 @@
  *
  * Return: number of nodes
  */
-size_t listint(const listint_t *head)
+size_t listint_len(const listint_t *head)
 {
 	size_t custom_num = 0;
 
