@@ -15,17 +15,17 @@ void print_binary(unsigned long int num)
 
 		if (current_bit & 1)
 		{
-			_putchar('1');
+			int_putchar('1');
 			has_one = 1;
 		}
 		else if (has_one)
 		{
-			_putchar('0');
+			int_putchar('0');
 		}
 	}
 
 	if (!has_one)
 	{
-		_putchar('0');
+		int_putchar('0');
 	}
 }
