@@ -2,25 +2,24 @@
 
 /**
  * binary_to_uint - converts a binary number to unsigned int
- * @b: string containing the binary number
+ * @bin_str: string containing the binary number
  *
- * Return: the converted number
+ * Return: the converted number, or 0 if there is an invalid character
  */
-unsigned int binary_to_uint(const char *b)
+unsigned int binary_to_uint(const char *bin_str)
 {
-	int i;
-	unsigned int dec_val = 0;
+int idx;
+unsigned int res = 0;
 
-	if (!b)
-		return (0);
+if (!bin_str)
+return (0);
 
-	for (i = 0; b[i]; i++)
-	{
-		if (b[i] < '0' || b[i] > '1')
-			return (0);
-		dec_val = 2 * dec_val + (b[i] - '0');
-	}
-
-	return (dec_val);
+for (idx = 0; bin_str[idx]; idx++)
+{
+if (bin_str[idx] < '0' || bin_str[idx] > '1')
+return (0);
+res = 2 * res + (bin_str[idx] - '0');
 }
 
+return (res);
+}
