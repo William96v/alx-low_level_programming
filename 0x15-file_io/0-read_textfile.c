@@ -25,5 +25,5 @@ ssize_t custom_read_file(const char *custom_filename, size_t custom_letters)
 
 	free(custom_buf);
 	close(custom_fd);
-	return custom_w;
+	return (custom_w);
 }
