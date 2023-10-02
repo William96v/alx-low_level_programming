@@ -2,27 +2,28 @@
 #include <stdlib.h>
 
 /**
- * read_textfile- Read text file print to STDOUT.
- * @filename: text file being read
- * @letters: number of letters to be read
- * Return: w- actual number of bytes read and printed
+ * custom_read_file- Custom function to read a file and print to STDOUT.
+ * @custom_filename: The custom filename to be read.
+ * @custom_letters: The number of custom letters to be read.
+ * Return: The actual number of bytes read and printed.
  *        0 when function fails or filename is NULL.
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+ssize_t custom_read_file(const char *custom_filename, size_t custom_letters)
 {
-	char *buf;
-	ssize_t fd;
-	ssize_t w;
-	ssize_t t;
+	char *custom_buf;
+	ssize_t custom_fd;
+	ssize_t custom_w;
+	ssize_t custom_t;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	custom_fd = open(custom_filename, O_RDONLY);
+	if (custom_fd == -1)
 		return (0);
-	buf = malloc(sizeof(char) * letters);
-	t = read(fd, buf, letters);
-	w = write(STDOUT_FILENO, buf, t);
 
-	free(buf);
-	close(fd);
-	return (w);
+	custom_buf = malloc(sizeof(char) * custom_letters);
+	custom_t = read(custom_fd, custom_buf, custom_letters);
+	custom_w = write(STDOUT_FILENO, custom_buf, custom_t);
+
+	free(custom_buf);
+	close(custom_fd);
+	return custom_w;
 }
