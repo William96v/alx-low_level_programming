@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "holberton.h"
+#include "main.h"
 
 ssize_t read_custom_file(const char *custom_filename, size_t custom_letters)
 {
