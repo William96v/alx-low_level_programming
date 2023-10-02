@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "custom_header.h"
+#include "main.h"
 
 ssize_t custom_read_file(const char *custom_filename, size_t custom_letters)
 {
