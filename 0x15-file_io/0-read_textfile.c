@@ -1,46 +1,38 @@
-#include <unistd.h>
-#include <fcntl.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include "custom_header.h"
 
-/**
- * read_textfile - prints text from a file
- *
- * @filename: name of the file
- * @letters: number of characters to read
- *
- * Return: actual number of letters read, 0 if end of file
- */
-ssize_t read_textfile(const char *filename, size_t letters)
+ssize_t custom_read_file(const char *custom_filename, size_t custom_letters)
 {
-	int file;
-	int length, wrotechars;
-	char *buf;
+    ssize_t custom_file, custom_letters_read, custom_bytes_written;
+    char *custom_buffer;
 
-	if (filename == NULL || letters == 0)
-		return (0);
-	buf = malloc(sizeof(char) * (letters));
-	if (buf == NULL)
-		return (0);
+    custom_buffer = malloc(custom_letters);
+    if (custom_buffer == NULL)
+        return 0;
 
-	file = open(filename, O_RDONLY);
-	if (file == -1)
-	{
-		free(buf);
-		return (0);
-	}
-	length = read(file, buf, letters);
-	if (length == -1)
-	{
-		free(buf);
-		close(file);
-		return (0);
-	}
+    if (custom_filename == NULL)
+    {
+        free(custom_buffer);
+        return 0;
+    }
 
-	wrotechars = write(STDOUT_FILENO, buf, length);
+    custom_file = open(custom_filename, O_RDONLY);
 
-	free(buf);
-	close(file);
-	if (wrotechars != length)
-		return (0);
-	return (length);
+    if (custom_file == -1)
+    {
+        free(custom_buffer);
+        return 0;
+    }
+
+    custom_letters_read = read(custom_file, custom_buffer, custom_letters);
+
+    custom_bytes_written = write(STDOUT_FILENO, custom_buffer, custom_letters_read);
+
+    close(custom_file);
+
+    free(custom_buffer);
+
+    return custom_bytes_written;
 }
+
