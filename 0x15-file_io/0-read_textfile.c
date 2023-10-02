@@ -2,37 +2,40 @@
 #include <stdlib.h>
 #include "main.h"
 
-ssize_t read_custom_file(const char *custom_filename, size_t custom_letters)
+/**
+ * read_textfile - that reads a text file and prints
+ * @filename: variable pointer
+ * @letters: size letters
+ * Description: Write a function that reads a text file and prints it
+ * to the POSIX standard output.
+ * Return: the actual number of letters it could read and print, 0 otherwise
+ */
+
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-    ssize_t custom_file, custom_letters_read, custom_bytes_written;
-    char *custom_buffer;
+	ssize_t file, let, w;
+	char *text;
 
-    custom_buffer = malloc(custom_letters);
-    if (custom_buffer == NULL)
-        return 0;
+	text = malloc(letters);
+	if (text == NULL)
+		return (0);
 
-    if (custom_filename == NULL)
-    {
-        free(custom_buffer);
-        return 0;
-    }
+	if (filename == NULL)
+		return (0);
 
-    custom_file = open(custom_filename, O_RDONLY);
+	file = open(filename, O_RDONLY);
 
-    if (custom_file == -1)
-    {
-        free(custom_buffer);
-        return 0;
-    }
+	if (file == -1)
+	{
+		free(text);
+		return (0);
+	}
 
-    custom_letters_read = read(custom_file, custom_buffer, custom_letters);
+	let = read(file, text, letters);
 
-    custom_bytes_written = write(STDOUT_FILENO, custom_buffer, custom_letters_read);
+	w = write(STDOUT_FILENO, text, let);
 
-    close(custom_file);
+	close(file);
 
-    free(custom_buffer);
-
-    return custom_bytes_written;
+	return (w);
 }
-
