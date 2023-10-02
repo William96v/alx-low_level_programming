@@ -1,7 +1,8 @@
-#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include "holberton.h"
 
-ssize_t custom_read_file(const char *custom_filename, size_t custom_letters)
+ssize_t read_custom_file(const char *custom_filename, size_t custom_letters)
 {
     ssize_t custom_file, custom_letters_read, custom_bytes_written;
     char *custom_buffer;
