@@ -1,29 +1,46 @@
-#include "main.h"
+#include <unistd.h>
+#include <fcntl.h>
 #include <stdlib.h>
 
 /**
- * custom_read_file- Custom function to read a file and print to STDOUT.
- * @custom_filename: The custom filename to be read.
- * @custom_letters: The number of custom letters to be read.
- * Return: The actual number of bytes read and printed.
- *        0 when function fails or filename is NULL.
+ * read_textfile - prints text from a file
+ *
+ * @filename: name of the file
+ * @letters: number of characters to read
+ *
+ * Return: actual number of letters read, 0 if end of file
  */
-ssize_t custom_read_file(const char *custom_filename, size_t custom_letters)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	char *custom_buf;
-	ssize_t custom_fd;
-	ssize_t custom_w;
-	ssize_t custom_t;
+	int file;
+	int length, wrotechars;
+	char *buf;
 
-	custom_fd = open(custom_filename, O_RDONLY);
-	if (custom_fd == -1)
+	if (filename == NULL || letters == 0)
+		return (0);
+	buf = malloc(sizeof(char) * (letters));
+	if (buf == NULL)
 		return (0);
 
-	custom_buf = malloc(sizeof(char) * custom_letters);
-	custom_t = read(custom_fd, custom_buf, custom_letters);
-	custom_w = write(STDOUT_FILENO, custom_buf, custom_t);
+	file = open(filename, O_RDONLY);
+	if (file == -1)
+	{
+		free(buf);
+		return (0);
+	}
+	length = read(file, buf, letters);
+	if (length == -1)
+	{
+		free(buf);
+		close(file);
+		return (0);
+	}
 
-	free(custom_buf);
-	close(custom_fd);
-	return (custom_w);
+	wrotechars = write(STDOUT_FILENO, buf, length);
+
+	free(buf);
+	close(file);
+	if (wrotechars != length)
+		return (0);
+	return (length);
 }
