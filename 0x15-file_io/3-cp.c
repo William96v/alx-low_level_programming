@@ -2,75 +2,52 @@
 #include <stdlib.h>
 #include "main.h"
 
+/**
+* main - program that copies the content of a file to another file
+* @argc: num argument
+* @argv: string argument
+* Return: 0
+*/
+
 int main(int argc, char *argv[])
 {
-    int source_file, destination_file;
-    int num_read = 1024, num_written = 0;
-    char buffer[1024];
+int file_from, file_to;
+int num1 = 1024, num2 = 0;
+char buf[1024];
 
-    // Check if the correct number of arguments are provided
-    if (argc != 3)
-    {
-        dprintf(STDERR_FILENO, "Usage: my_cp source_file destination_file\n");
-        exit(1);
-    }
-
-    // Open source file for reading
-    source_file = open(argv[1], O_RDONLY);
-
-    if (source_file == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-        exit(2);
-    }
-
-    // Open or create destination file for writing
-    destination_file = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-
-    if (destination_file == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-        close(source_file);
-        exit(3);
-    }
-
-    // Copy content from source to destination
-    while (num_read == 1024)
-    {
-        num_read = read(source_file, buffer, 1024);
-
-        if (num_read == -1)
-        {
-            dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-            close(source_file);
-            close(destination_file);
-            exit(4);
-        }
-
-        num_written = write(destination_file, buffer, num_read);
-
-        if (num_written < num_read)
-        {
-            dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-            close(source_file);
-            close(destination_file);
-            exit(5);
-        }
-    }
-
-    // Close files
-    if (close(source_file) == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't close source file\n");
-        exit(6);
-    }
-
-    if (close(destination_file) == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't close destination file\n");
-        exit(7);
-    }
-
-    return 0;
+if (argc != 3)
+	dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
+file_from = open(argv[1], O_RDONLY);
+if (file_from == -1)
+{
+	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+	exit(98);
+}
+file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR
+	| S_IRGRP | S_IWGRP | S_IROTH);
+if (file_to == -1)
+{
+	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+	close(file_from), exit(99);
+}
+while (num1 == 1024)
+{
+	num1 = read(file_from, buf, 1024);
+	if (num1 == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
+	num2 = write(file_to, buf, num1);
+	if (num2 < num1)
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
 }
 
+if (close(file_from) == -1)
+	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from), exit(100);
+
+if (close(file_to) == -1)
+	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to), exit(100);
+
+return (0);
+}
